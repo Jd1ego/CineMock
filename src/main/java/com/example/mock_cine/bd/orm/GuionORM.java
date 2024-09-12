@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Table(name = "Guion")
 @Entity
 @Data
@@ -22,9 +24,9 @@ public class GuionORM {
     private String autor;
 
     @Column(name = "fechaCreacion")
-    private String fechaCreacion;
+    private LocalDate fechaCreacion;
 
-    public GuionORM(String titulo, String autor, String fechaCreacion) {
+    public GuionORM(String titulo, String autor, LocalDate fechaCreacion) {
         this.titulo = titulo;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
