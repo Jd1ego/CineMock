@@ -1,4 +1,4 @@
-package com.example.mock_cine.controller;
+package com.example.mock_cine.controller.dto;
 
 import java.time.LocalDate;
 

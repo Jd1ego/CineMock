@@ -1,4 +1,4 @@
-package com.example.mock_cine;
+package com.example.mock_cine.logica;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
