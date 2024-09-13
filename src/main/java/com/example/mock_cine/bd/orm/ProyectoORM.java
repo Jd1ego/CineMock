@@ -3,6 +3,10 @@ package com.example.mock_cine.bd.orm;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.web.JsonPath;
+
+import java.util.List;
+
 @Table(name = "Proyecto")
 @Entity
 @Data
@@ -16,19 +20,30 @@ public class ProyectoORM {
     @Column
     private String titulo;
 
-    @Column (name = "guion_id")
-    private String guionId;
+    @OneToOne(mappedBy = "proyecto")
+    private GuionORM guion;
 
-    @Column (name = "presupuesto_id")
-    private String presupuestoId;
+    @OneToOne(mappedBy = "proyecto")
+    private ProgresoORM progreso;
 
-    @Column (name = "progreso_id")
-    private String progresoId;
+    @OneToOne(mappedBy = "proyecto")
+    private PresupuestoORM presupuesto;
 
-    public ProyectoORM(String titulo, String guionId, String presupuestoId, String progresoId) {
+    @ManyToMany
+    @JoinTable(name = "proyecto_equipo",
+            joinColumns = @JoinColumn(name = "proyecto_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipo_id"))
+    private List<EquipoProduccionORM> equiposProduccion;
+
+    public ProyectoORM(String titulo, GuionORM guion, ProgresoORM progreso, PresupuestoORM presupuesto, List<EquipoProduccionORM> equiposProduccion) {
         this.titulo = titulo;
-        this.guionId = guionId;
-        this.presupuestoId = presupuestoId;
-        this.progresoId = progresoId;
+        this.guion = guion;
+        this.progreso = progreso;
+        this.presupuesto = presupuesto;
+        this.equiposProduccion = equiposProduccion;
+    }
+
+    public ProyectoORM(String titulo) {
+        this.titulo = titulo;
     }
 }

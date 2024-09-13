@@ -3,12 +3,15 @@ package com.example.mock_cine.bd.orm;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Table(name = "EquipoProduccion")
 @Entity
 @Data
 @NoArgsConstructor
 
-public class EquipoProduccion {
+public class EquipoProduccionORM {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,7 +25,17 @@ public class EquipoProduccion {
     @Column(name = "contacto")
     private String contacto;
 
-    public EquipoProduccion(String nombre, String rol, String contacto) {
+    @ManyToMany(mappedBy = "equiposProduccion")
+    private List<ProyectoORM> proyectos;
+
+    public EquipoProduccionORM(String nombre, String rol, String contacto, List<ProyectoORM> proyectos) {
+        this.nombre = nombre;
+        this.rol = rol;
+        this.contacto = contacto;
+        this.proyectos = proyectos;
+    }
+
+    public EquipoProduccionORM(String nombre, String rol, String contacto) {
         this.nombre = nombre;
         this.rol = rol;
         this.contacto = contacto;

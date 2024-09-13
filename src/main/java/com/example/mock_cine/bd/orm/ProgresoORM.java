@@ -24,9 +24,14 @@ public class ProgresoORM {
     @Column (name = "fecha_actualizacion")
     private LocalDate fechaActualizacion;
 
-    public ProgresoORM(String etapa, double porcentajeCompletado, LocalDate fechaActualizacion) {
+    @OneToOne
+    @JoinColumn(name = "proyecto_id")
+    private ProyectoORM proyecto;
+
+    public ProgresoORM(String etapa, double porcentajeCompletado, LocalDate fechaActualizacion, ProyectoORM proyecto) {
         this.etapa = etapa;
         this.porcentajeCompletado = porcentajeCompletado;
         this.fechaActualizacion = fechaActualizacion;
+        this.proyecto = proyecto;
     }
 }

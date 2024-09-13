@@ -26,9 +26,15 @@ public class GuionORM {
     @Column(name = "fechaCreacion")
     private LocalDate fechaCreacion;
 
-    public GuionORM(String titulo, String autor, LocalDate fechaCreacion) {
+
+    @OneToOne
+    @JoinColumn(name = "proyecto_id")
+    private ProyectoORM proyecto;
+
+    public GuionORM(String titulo, String autor, LocalDate fechaCreacion, ProyectoORM proyecto) {
         this.titulo = titulo;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
+        this.proyecto = proyecto;
     }
 }

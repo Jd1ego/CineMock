@@ -1,4 +1,6 @@
 package com.example.mock_cine.controller.dto;
 
-public record ProyectoDTO(String titulo,String guionId,String presupuestoId,String progresoId) {
+import java.util.List;
+
+public record ProyectoDTO(String titulo, List<Long> equipoIds) {
 }

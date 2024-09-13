@@ -19,8 +19,13 @@ public class PresupuestoORM {
     @Column(name = "moneda")
     private String moneda;
 
-    public PresupuestoORM(int cantidad, String moneda) {
+    @OneToOne
+    @JoinColumn(name = "proyecto_id")
+    private ProyectoORM proyecto;
+
+    public PresupuestoORM(int cantidad, String moneda, ProyectoORM proyecto) {
         this.cantidad = cantidad;
         this.moneda = moneda;
+        this.proyecto = proyecto;
     }
 }
