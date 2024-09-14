@@ -1,5 +1,6 @@
 package com.example.mock_cine.bd.orm;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +29,8 @@ public class GuionORM {
 
 
     @OneToOne
-    @JoinColumn(name = "proyecto_id")
+    @JoinColumn(name = "proyecto_id", nullable = false)
+    @JsonBackReference
     private ProyectoORM proyecto;
 
     public GuionORM(String titulo, String autor, LocalDate fechaCreacion, ProyectoORM proyecto) {

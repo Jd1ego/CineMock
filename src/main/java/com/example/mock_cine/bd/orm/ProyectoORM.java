@@ -1,5 +1,6 @@
 package com.example.mock_cine.bd.orm;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,8 @@ public class ProyectoORM {
     @Column
     private String titulo;
 
-    @OneToOne(mappedBy = "proyecto")
+    @OneToOne(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private GuionORM guion;
 
     @OneToOne(mappedBy = "proyecto")
