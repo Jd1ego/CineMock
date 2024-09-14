@@ -24,8 +24,7 @@ public class ProyectoController {
 
     private ProyectoJPA proyectoJPA;
     private EquipoProduccionJPA equipoProduccionJPA;
-    private GuionJPA guionJPA;
-    private EquipoProduccionController equipoProduccionController;
+    private GuionController guionController;
 
 
     List<ProyectoDTO> proyectos = new ArrayList<>();
@@ -55,17 +54,10 @@ public class ProyectoController {
 
         // Verificar si hay un guion proporcionado
         if (proyectoDto.guionDTO() != null) {
+
             GuionDTO guionDto = proyectoDto.guionDTO();
+            GuionORM guion = guionController.crearGuion(guionDto, proyecto);
 
-            // Crear el guion
-            GuionORM guion = new GuionORM(
-                    guionDto.titulo(),
-                    guionDto.autor(),
-                    guionDto.fechaCreacion(),
-                    proyecto  // Asignar el proyecto al guion
-            );
-
-            // Asignar el guion al proyecto
             proyecto.setGuion(guion);
         }
 
